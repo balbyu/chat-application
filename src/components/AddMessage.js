@@ -5,15 +5,18 @@ class AddMessage extends React.Component {
     message: "",
   };
 
+  componentDidMount() {
+    this.props.addUser("Me");
+  }
+
   updateMessage = (ev) => {
     this.setState({ message: ev.target.value });
-    console.log(this.state.message);
   };
 
   sendMessage = (ev) => {
-    if (ev.key === "Enter") {
+    if (ev.key === "Enter" && this.state.message !== "") {
       // Dispatch an AddMessage action with the message state and author of self
-      this.props.dispatch(this.state.message, "Moi");
+      this.props.addMessage(this.state.message, "Me");
 
       // Reset input field
       this.setState({ message: "" });
