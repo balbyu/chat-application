@@ -8,17 +8,17 @@ I've always wanted to know how real-time chat windows work so I decided to dive 
 
 This tutorial was a good place to start but it didn't do the best job explaining things... This led me reading hours of documentation on WebSockets and in the end I learned more on my own than the tutorial could offer.
 
-WebSockets are some pretty cool shit but can be extremely tricky to manage
+- WebSockets are some pretty cool shit but can be extremely tricky to manage
 
-React Middleware is also pretty cool shit
+- React Middleware is also pretty cool shit
 
-Creating the client and server-side code was somewhat confusing because they both share so much of the same vernacular
+- Creating the client and server-side code was somewhat confusing because they both share so much of the same vernacular
 
-I hadn't been using Redux properly before this project. I was forced to finally do things the right way in this project
+- I hadn't been using Redux properly before this project. I was forced to finally do things the right way in this project
 
-I really need more than 1 monitor 🥵
+- I really need more than 1 monitor 🥵
 
-I had no idea that React included typechecking. Coming from a strongly typed language background I like the structure and bug-prevention PropType offers.
+- I had no idea that React included typechecking. Coming from a strongly typed language background I like the structure and bug-prevention PropType offers.
 
 I still get confused about ES6 Generators. I'll be honest and admit that I just copied and pasted the following and was happy when everything worked magically.
 
