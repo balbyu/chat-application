@@ -1,68 +1,100 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# A Silly Little Chat-App
 
-## Available Scripts
+I've always wanted to know how real-time chat windows work so I decided to dive into [flavio's](https://medium.com/free-code-camp/how-to-build-a-chat-application-using-react-redux-redux-saga-and-web-sockets-47423e4bc21a) tutorial and try it out for myself.
 
-In the project directory, you can run:
+![](public/chat.gif)
+
+## What did I learn?
+
+This tutorial was a good place to start but it didn't do the best job explaining things... This led me reading hours of documentation on WebSockets and in the end I learned more on my own than the tutorial could offer.
+
+WebSockets are some pretty cool shit but can be extremely tricky to manage
+
+React Middleware is also pretty cool shit
+
+Creating the client and server-side code was somewhat confusing because they both share so much of the same vernacular
+
+I hadn't been using Redux properly before this project. I was forced to finally do things the right way in this project
+
+I really need more than 1 monitor 🥵
+
+I had no idea that React included typechecking. Coming from a strongly typed language background I like the structure and bug-prevention PropType offers.
+
+I still get confused about ES6 Generators. I'll be honest and admit that I just copied and pasted the following and was happy when everything worked magically.
+
+```js
+const handleNewMessage = function* handleNewMessage(params) {
+  yield takeEvery(types.ADD_MESSAGE, (action) => {
+    action.author = params.username;
+    params.socket.send(JSON.stringify(action));
+  });
+};
+```
+
+Giving store access to all components via the Provider makes things so much more simpler
+
+```js
+ReactDOM.render(
+  <Provider store={configureStore()}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
+```
+
+Pulling out Redux state and props into a container removes the tight-coupling of React component with Redux state
+
+```js
+
+// AddMessage Container
+const mapDispatchToProps = (dispatch) => ({
+  addMessage: (message, author) => {
+    dispatch(addMessage(message, author));
+  },
+  addUser: (name) => {
+    dispatch(addUser(name));
+  },
+});
+
+export const AddMessage = connect(
+  () => ({}),
+  mapDispatchToProps
+)(AddMessageComponent);
+
+// AddMessage Component
+class AddMessage extends React.Component {
+  render() {
+    return (
+    );
+  }
+}
+
+export default AddMessage;
+
+```
+
+## But #balbyu, how do I run this on my computer?
+
+Dear Reader, thank you for asking. It is a very simple process.
+
+Clone the repo and install dependencies
+
+### `npm install`
+
+and start the server from the server folder
+
+### `node app.js`
+
+and start the React client from root folder in a new terminal
 
 ### `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The client will be assigned a random username every time they connect to the server. Their username is added to the server's current list of users when they connect, and it is removed when they disconnect. Message history is unfortunately not preserved, but I will be implementing this feature in the near future.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Future Improvements (that may or may not get done)
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- Preserved chat history for all users
+- Modern UI
+- Timestamps for messages
+- Unit Testing
+- Hosted on a website
