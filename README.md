@@ -8,9 +8,9 @@ I've always wanted to know how real-time chat windows work so I decided to dive 
 
 This tutorial was a good place to start but it didn't do the best job explaining things... This led me reading hours of documentation on WebSockets and in the end I learned more on my own than the tutorial could offer.
 
-- WebSockets are some pretty cool shit but can be extremely tricky to manage
+- WebSockets are pretty cool but can be extremely tricky to manage
 
-- React Middleware is also pretty cool shit
+- React Middleware is also pretty cool
 
 - Creating the client and server-side code was somewhat confusing because they both share so much of the same vernacular
 
@@ -89,7 +89,7 @@ and start the React client from root folder in a new terminal
 
 ### `npm start`
 
-The client will be assigned a random username every time they connect to the server. Their username is added to the server's current list of users when they connect, and it is removed when they disconnect. Message history is unfortunately not preserved, but I will be implementing this feature in the near future.
+The client will be assigned a random username every time they connect to the server. Their username is added to the server's current list of users when they connect, and it is removed when they disconnect.
 
 ## Future Improvements (that may or may not get done)
 
